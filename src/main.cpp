@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
           double angle = std::stod(j[1]["steering_angle"].get<std::string>());
           double steer_value;
 		  double throttle_value;
-		  double speed_correction=1.0;
+		  double speed_correction=1.0; // Dummy constant, to be later used in a more smart way :-)
 		  
           /*
           * Calculating steering value here,
@@ -113,7 +113,7 @@ int main(int argc, char* argv[])
 		  throttle_value = std::min(std::max(throttle_value,-1.0), 1.0);
 		  
 		  // Brakes are used if the car is experiencing large tracking error, 
-		  // strong steering angle and speed above 50 mph
+		  // strong steering angle and speed above 30 mph
 		  if (fabs(cte) > 0.6 && fabs(angle) > 5.0 && speed > 30.0) {
 		  	  throttle_value = -1.0;
 		  }
